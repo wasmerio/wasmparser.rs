@@ -70,7 +70,9 @@ pub use primitives::Type;
 pub use validator::validate;
 pub use validator::ValidatingOperatorParser;
 pub use validator::ValidatingParser;
-pub use validator::WasmModuleResources;
+
+pub use operators_validator::OperatorValidatorConfig;
+pub use operators_validator::WasmModuleResources;
 
 pub use readers::CodeSectionReader;
 pub use readers::Data;
@@ -108,6 +110,7 @@ pub use readers::TypeSectionReader;
 
 mod binary_reader;
 mod limits;
+mod operators_validator;
 mod parser;
 mod primitives;
 mod readers;
