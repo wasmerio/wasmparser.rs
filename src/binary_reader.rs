@@ -18,7 +18,7 @@ use std::str;
 use std::vec::Vec;
 
 use limits::{
-    MAX_WASM_FUNCTION_LOCALS, MAX_WASM_FUNCTION_PARAMS, MAX_WASM_FUNCTION_RETURNS,
+    MAX_WASM_FUNCTION_LOCALS, MAX_WASM_FUNCTION_PARAMS, MAX_WASM_FUNCTION_MULTI_RETURNS,
     MAX_WASM_FUNCTION_SIZE, MAX_WASM_STRING_SIZE,
 };
 
@@ -247,9 +247,9 @@ impl<'a> BinaryReader<'a> {
             params.push(self.read_type()?);
         }
         let returns_len = self.read_var_u32()? as usize;
-        if returns_len > MAX_WASM_FUNCTION_RETURNS {
+        if returns_len > MAX_WASM_FUNCTION_MULTI_RETURNS {
             return Err(BinaryReaderError {
-                message: "function params size is out of bound",
+                message: "function returns size is out of bound",
                 offset: self.original_position() - 1,
             });
         }
